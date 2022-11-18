@@ -41,7 +41,7 @@
                 <td><?= $d['jurusan'] ?></td>
                 <td><?= $d['angkatan'] ?></td>
                 <td>
-                    <a href="">Ubah</a> | 
+                    <a href="ubah.php?id=<?= $d['id'] ?>">Ubah</a> | 
                     <a href="hapus.php?id=<?= $d['id'] ?>" onclick="return confirm('Yakin dihapus?');">Hapus</a>
                 </td>
             </tr>

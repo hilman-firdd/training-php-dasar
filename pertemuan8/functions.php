@@ -38,3 +38,27 @@ function hapus($id) {
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }
+
+function ubah($data) {
+    global $conn;
+
+    $id = $data['id'];
+    $nama = htmlspecialchars($data['nama']);
+    $kelas = htmlspecialchars($data['kelas']);
+    $gambar = htmlspecialchars($data['gambar']);
+    $jurusan = htmlspecialchars($data['jurusan']);
+    $angkatan = htmlspecialchars($data['angkatan']);
+
+    $query = "UPDATE siswa set
+    nama = '$nama',
+    kelas = '$kelas',
+    gambar = '$gambar',
+    jurusan = '$jurusan',
+    angkatan = '$angkatan'
+    where id = $id;
+    ";
+
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+
+}
