@@ -25,6 +25,7 @@
                 <th>Kelas</th>
                 <th>Jurusan</th>
                 <th>Angkatan</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +40,10 @@
                 <td><?= $d['kelas'] ?></td>
                 <td><?= $d['jurusan'] ?></td>
                 <td><?= $d['angkatan'] ?></td>
+                <td>
+                    <a href="">Ubah</a> | 
+                    <a href="hapus.php?id=<?= $d['id'] ?>" onclick="return confirm('Yakin dihapus?');">Hapus</a>
+                </td>
             </tr>
             <?php endforeach; ?>
         </tbody>

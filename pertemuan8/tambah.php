@@ -1,3 +1,21 @@
+<?php
+
+require 'functions.php';
+
+if ( isset($_POST["submit"])) {
+    if( tambah($_POST) > 0) {
+        echo "
+        <script>
+            alert('data berhasil ditambah');
+            document.location.href = 'index.php';
+        </script>
+        ";
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +27,31 @@
 <body>
     <h1>Tambah Data Siswa</h1>
 
-    <form action="" method="POST"></form>
-    <ul>
-        <li>
-            <label for="nama">Nama</label>
-            <input type="text name="nama">
-        </li>
-    </ul>
+    <form action="" method="POST">
+        <ul>
+            <li>
+                <label for="nama">Nama</label>
+                <input type="text" name="nama">
+            </li>
+            <li>
+                <label for="kelas">Kelas</label>
+                <input type="text" name="kelas">
+            </li>
+            <li>
+                <label for="gambar">Gambar</label>
+                <input type="text" name="gambar">
+            </li>
+            <li>
+                <label for="jurusan">Jurusan</label>
+                <input type="text" name="jurusan">
+            </li>
+            <li>
+                <label for="angkatan">Angkatan</label>
+                <input type="text" name="angkatan">
+            </li>
+            <button type="submit" name="submit">Tambah data</button>
+        </ul>
+    </form>
 
     
 </body>
