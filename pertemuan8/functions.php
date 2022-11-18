@@ -50,7 +50,7 @@ function ubah($data) {
     $angkatan = htmlspecialchars($data['angkatan']);
 
     $query = "UPDATE siswa set
-    nama = '$nama',
+    nama = '$nama', 
     kelas = '$kelas',
     gambar = '$gambar',
     jurusan = '$jurusan',
@@ -61,4 +61,13 @@ function ubah($data) {
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 
+}
+
+
+function cari($cari) {
+    $query = "SELECT * FROM siswa WHERE 
+    nama LIKE '%$cari%' OR
+    kelas LIKE '%$cari%'  
+    ";
+    return query($query);
 }

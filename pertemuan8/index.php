@@ -1,6 +1,10 @@
 <?php
     require 'functions.php';
     $query = query("SELECT * FROM siswa");
+
+    if(isset($_POST['cari'])) {
+        $query = cari($_POST['pencarian']);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,9 +17,16 @@
 <body>
     
     <h1>Daftar Siswa</h1>
-
     <a href="tambah.php">Tambah data siswa</a>
-    <br><br>
+    <br><br><br>
+
+    <div>
+        <form action="" method="POST">
+            <input type="text" name="pencarian">
+            <button type="submit" name="cari">Cari</button>
+        </form>
+    </div>
+
     <table border="1">
         <thead>
             <tr>
