@@ -20,7 +20,14 @@ function tambah($data) {
     global $conn;
     $nama = htmlspecialchars($data['nama']);
     $kelas = htmlspecialchars($data['kelas']);
-    $gambar = htmlspecialchars($data['gambar']);
+    
+    // $gambar = htmlspecialchars($data['gambar']);
+    $gambar = gambar();
+    if(!$gambar) {
+        return false;
+    }
+
+
     $jurusan = htmlspecialchars($data['jurusan']);
     $angkatan = htmlspecialchars($data['angkatan']);
 
@@ -30,6 +37,45 @@ function tambah($data) {
     ('$nama','$gambar','$kelas','$jurusan','$angkatan')";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
+}
+
+function gambar(){
+    $namaFile = $_FILES['gambar']['name'];
+    $ukuranFile = $_FILES['gambar']['size'];
+    $error = $_FILES['gambar']['error'];
+    $tmpName = $_FILES['gambar']['tmp_name'];
+
+    if($error === 4) {
+        echo "
+        <script> alert('Pilih gambar terlebih dahulu')</script>
+        ";
+        return false;
+    }
+
+    $ekstensiGambarValid = ['jpg', 'png', 'jpeg'];
+    $ekstensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+    if( !in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        echo "
+        <script> alert('Yang anda Upload Bukan Gambar')</script>
+        ";
+        return false;
+    }
+
+    if( $ukuranFile > 1000000) {
+        echo "
+        <script> alert('ukuran gambar terlalu besar')</script>
+        ";
+        return false;
+    }
+
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+    move_uploaded_file($tmpName, 'gambar/'.$namaFileBaru);
+    return $namaFileBaru;
 }
 
 function hapus($id) {
@@ -45,7 +91,14 @@ function ubah($data) {
     $id = $data['id'];
     $nama = htmlspecialchars($data['nama']);
     $kelas = htmlspecialchars($data['kelas']);
-    $gambar = htmlspecialchars($data['gambar']);
+    $gambarLama = htmlspecialchars($data['gambarLama']);
+
+    if($_FILES['gambar']['error'] === 4) {
+        $gambar = $gambarLama;
+    }else{
+        $gambar = gambar();
+    }
+
     $jurusan = htmlspecialchars($data['jurusan']);
     $angkatan = htmlspecialchars($data['angkatan']);
 

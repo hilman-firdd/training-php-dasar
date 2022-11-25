@@ -3,10 +3,18 @@
 require 'functions.php';
 
 if ( isset($_POST["submit"])) {
+    // var_dump($_FILES);
     if( tambah($_POST) > 0) {
         echo "
         <script>
             alert('data berhasil ditambah');
+            document.location.href = 'index.php';
+        </script>
+        ";
+    }else{
+        echo "
+        <script>
+            alert('data gagal berhasil ditambah');
             document.location.href = 'index.php';
         </script>
         ";
@@ -27,7 +35,7 @@ if ( isset($_POST["submit"])) {
 <body>
     <h1>Tambah Data Siswa</h1>
 
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <ul>
             <li>
                 <label for="nama">Nama</label>
@@ -39,7 +47,7 @@ if ( isset($_POST["submit"])) {
             </li>
             <li>
                 <label for="gambar">Gambar</label>
-                <input type="text" name="gambar">
+                <input type="file" name="gambar">
             </li>
             <li>
                 <label for="jurusan">Jurusan</label>

@@ -33,13 +33,14 @@ if ( isset($_POST["submit"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data Siswa</title>
+    <title>Ubah Data Siswa</title>
 </head>
 <body>
-    <h1>Tambah Data Siswa</h1>
+    <h1>Ubah Data Siswa</h1>
 
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <input type="hidden" value="<?= $siswa['id'] ?>" name="id">
+        <input type="hidden" name="gambarLama" value="<?= $siswa['gambar'] ?>">
         <ul>
             <li>
                 <label for="nama">Nama</label>
@@ -50,8 +51,9 @@ if ( isset($_POST["submit"])) {
                 <input type="text" name="kelas" value="<?= $siswa['kelas']?>">
             </li>
             <li>
-                <label for="gambar">Gambar</label>
-                <input type="text" name="gambar" value="<?= $siswa['gambar']?>">
+                <label for="gambar">Gambar</label><br>
+                <img src="gambar/<?= $siswa['gambar'] ?>" width="150" alt="">
+                <input type="file" name="gambar" value="<?= $siswa['gambar']?>">
             </li>
             <li>
                 <label for="jurusan">Jurusan</label>
